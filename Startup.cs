@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MeetingPlannerAPI.Models;
+using MeetingPlannerAPI.Services;
+using Microsoft.Extensions.Options;
 
 namespace MeetingPlannerAPI
 {
@@ -26,12 +29,20 @@ namespace MeetingPlannerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MeetingProgramsDbSettings>(
+                Configuration.GetSection(nameof(MeetingProgramsDbSettings)));
 
-            services.AddControllers();
+            services.AddSingleton<IMeetingProgramsDbSettings>(sp =>
+                sp.GetRequiredService<IOptions<MeetingProgramsDbSettings>>().Value);
+
+            services.AddSingleton<ProgramService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MeetingPlannerAPI", Version = "v1" });
             });
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
