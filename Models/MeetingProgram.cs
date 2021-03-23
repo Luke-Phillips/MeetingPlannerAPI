@@ -10,14 +10,14 @@ namespace MeetingPlannerAPI.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        public string Date { get; set; }
-        public string Conductor { get; set; }
-        public string OpeningSong { get; set; }
-        public string SacramentHymn { get; set; }
-        public string SpecialSong { get; set; }
-        public string ClosingSong { get; set; }
-        public string OpeningPrayer { get; set; }
-        public string ClosingPrayer { get; set; }
-        public List<Speaker> Speakers { get; set; }
+        public string date { get; set; }
+        public string conductor { get; set; }
+        public string openingSong { get; set; }
+        public string sacramentHymn { get; set; }
+        public string specialSong { get; set; }
+        public string closingSong { get; set; }
+        public string openingPrayer { get; set; }
+        public string closingPrayer { get; set; }
+        public List<Speaker> speakers { get; set; }
     }
 }
